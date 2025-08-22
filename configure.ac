@@ -11,8 +11,7 @@ AM_MAINTAINER_MODE
 
 AC_PROG_CC
 
-AM_INIT_AUTOMAKE
-
+AM_INIT_AUTOMAKE(subdir-objects)
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_TYPE_SIZE_T
