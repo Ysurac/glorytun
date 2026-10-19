@@ -228,7 +228,9 @@ static int sk_listen (int fd, struct addrinfo *ai)
     }
 
 #ifdef __linux__
-    sk_set_int(fd, sk_defer_accept, gt.timeout/1000);
+    // TCP_DEFER_ACCEPT drops the bare ACK that completes an MP_JOIN
+    if (!gt.mptcp)
+        sk_set_int(fd, sk_defer_accept, gt.timeout/1000);
 #else
     char data[256] = "dataready";
     sk_set(fd, sk_acceptfilter, &data, sizeof(data));
